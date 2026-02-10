@@ -8,3 +8,6 @@ count.txt
 .nitro
 .tanstack
 .wrangler
+*.md
+!README.md
+.claude
