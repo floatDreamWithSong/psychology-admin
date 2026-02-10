@@ -8,7 +8,7 @@ import {
 import type React from "react";
 
 interface LinkItemI {
-	icon: (props: React.ComponentProps<"img">) => React.JSX.Element;
+	icon: (props: React.ComponentProps<"svg">) => React.JSX.Element;
 	label: string;
 	href: ValidateFromPath<RegisteredRouter, ReadonlyArray<unknown>>;
 }
