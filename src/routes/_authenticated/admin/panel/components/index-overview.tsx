@@ -7,10 +7,13 @@ import { ClockIcon, HomeIcon, MessageIcon } from "@/components/icons";
 import WarningIcon from "@/components/icons/panel/warning-icon";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { ThemeProps } from "@/lib/theme";
+
 interface IndexCardProps {
 	title: string;
 	value: string;
 	percentage: number;
+	props?: ThemeProps;
 	icon: React.ReactNode;
 }
 const IndexOverview = () => {
@@ -43,6 +46,9 @@ const IndexOverview = () => {
 			title: "当前高风险用户数",
 			value: "1000人",
 			percentage: 10,
+			props: {
+				"data-theme": "warm",
+			},
 			icon: <WarningIcon />,
 		},
 	];
@@ -52,10 +58,11 @@ const IndexOverview = () => {
 				指标总览
 			</CardHeaderTitle>
 			<div className="flex gap-5 flex-wrap">
-				{indexCards.map(({ icon, percentage, title, value }) => (
+				{indexCards.map(({ icon, percentage, title, value, props }) => (
 					<CardLayout
-						className="px-7 py-5 squre-border flex min-w-78 w-fit"
+						className={cn("px-7 py-5 squre-border flex min-w-78 w-fit")}
 						key={title}
+						{...props}
 					>
 						<div className="flex-1">
 							<CardHeaderTitle variant="secondary">{title}</CardHeaderTitle>
@@ -68,7 +75,7 @@ const IndexOverview = () => {
 										className={cn(
 											"flex text-white rounded-sm h-6.75 px-1 items-center",
 											percentage > 0
-												? "bg-linear-to-r from-gradient-blue to-gradient-purple"
+												? "bg-linear-to-r from-gradient-1 to-gradient-2"
 												: "bg-[#D8D8D8] ",
 										)}
 									>
@@ -81,11 +88,9 @@ const IndexOverview = () => {
 							</div>
 						</div>
 						<div
-							className="size-15 flex items-center justify-center"
+							className="size-15 flex items-center justify-center rounded-full bg-pabel-card-icon-bg"
 							style={{
-								background: "#FAFCFF",
 								boxShadow: "0px 0px 4.83607px rgba(0, 0, 0, 0.08)",
-								borderRadius: "50%",
 							}}
 						>
 							{icon}

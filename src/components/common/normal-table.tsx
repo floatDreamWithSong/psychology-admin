@@ -247,7 +247,7 @@ export function NormalTable<T>({
 					value={String(size)}
 					onValueChange={(val) => table.setPageSize(Number(val))}
 				>
-					<SelectTrigger className="h-8 w-auto gap-1 text-sm">
+					<SelectTrigger className="h-8 w-auto gap-1 text-sm rounded-none border-none bg-pagination-input-bg">
 						<SelectValue />
 					</SelectTrigger>
 					<SelectContent>
@@ -298,7 +298,7 @@ function PageJumpInput({
 
 	return (
 		<Input
-			className="w-12 min-w-12 h-8 text-center text-sm px-1"
+			className="w-12 min-w-12 h-8 text-center text-sm px-1 bg-pagination-input-bg rounded-none border-none"
 			value={value}
 			onChange={(e) => setValue(e.target.value)}
 			onBlur={commit}

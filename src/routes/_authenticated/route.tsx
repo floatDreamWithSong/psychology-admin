@@ -5,8 +5,23 @@ import DashboardLayout from "./layouts/dashboard";
 import { SidebarLayout } from "./layouts/sidebar";
 import { env } from "@/env";
 import Logo from "@/components/icons/logo";
-import { AvatarIcon, PanelIcon, RecordIcon, SetttingIcon, PanelUserIcon, SidebarAlertIcon } from "@/components/icons";
+import {
+	AvatarIcon,
+	PanelIcon,
+	RecordIcon,
+	SetttingIcon,
+	PanelUserIcon,
+	SidebarAlertIcon,
+} from "@/components/icons";
 import { adminRouteTree } from "./admin/route";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useTheme } from "next-themes";
+import { PaletteIcon } from "lucide-react";
 
 // 创建认证布局路由
 export const authenticatedRoute = createRoute({
@@ -23,6 +38,7 @@ export const authenticatedRoute = createRoute({
 		}
 	},
 	component: () => {
+		const { setTheme } = useTheme();
 		return (
 			<DashboardLayout
 				sidebar={
@@ -62,7 +78,24 @@ export const authenticatedRoute = createRoute({
 						]}
 						footer={
 							<div>
-								<AvatarIcon />
+								<DropdownMenu dir="ltr">
+									<DropdownMenuTrigger>
+										<AvatarIcon />
+									</DropdownMenuTrigger>
+									<DropdownMenuContent>
+										<DropdownMenuItem
+											onClick={() => {
+												setTheme((cur) => {
+													if (cur === "cool") return "warm";
+													return "cool";
+												});
+											}}
+										>
+											<PaletteIcon size={16} className="mr-2" />
+											切换主题
+										</DropdownMenuItem>
+									</DropdownMenuContent>
+								</DropdownMenu>
 							</div>
 						}
 					/>
@@ -72,4 +105,6 @@ export const authenticatedRoute = createRoute({
 	},
 });
 
-export const authenticatedRouteTree = authenticatedRoute.addChildren([adminRouteTree]);
+export const authenticatedRouteTree = authenticatedRoute.addChildren([
+	adminRouteTree,
+]);

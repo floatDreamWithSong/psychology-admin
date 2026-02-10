@@ -58,6 +58,8 @@ function PaginationLink({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
+        "rounded-none border-none",
+        isActive && "bg-pagination-active-bg text-pagination-active-text",
         className
       )}
       {...props}

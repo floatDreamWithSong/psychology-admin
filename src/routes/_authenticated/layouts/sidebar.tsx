@@ -38,7 +38,7 @@ const SidebarLink = ({
 					])}
 				>
 					{isActive && (
-						<div className="from-gradient-blue to-gradient-purple bg-linear-to-b w-1 h-full absolute top-0 left-0" />
+						<div className="from-gradient-1 to-gradient-2 bg-linear-to-b w-1 h-full absolute top-0 left-0" />
 					)}
 					<Icon className="size-6" />
 					{label}

@@ -20,7 +20,7 @@ export const departmentColumns: Array<ColumnDef<PanelData>> = [
 			return (
 				<span
 					className={cn(
-						"inline-block px-2.5 py-0.5 text-xs font-medium text-white w-14 h-5 rounded-full bg-gradient-purple",
+						"inline-block px-2.5 py-0.5 text-xs font-medium text-white w-14 h-5 rounded-full bg-gradient-2",
 					)}
 				>
 					{type}
@@ -81,7 +81,7 @@ export const departmentColumns: Array<ColumnDef<PanelData>> = [
 			return (
 				<button
 					type="button"
-					className="cursor-pointer text-gradient-purple hover:underline text-sm bg-transparent border-none"
+					className="cursor-pointer text-gradient-2 hover:underline text-sm bg-transparent border-none"
 				>
 					查看详情
 				</button>

@@ -7,6 +7,7 @@ import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import type { QueryClient } from "@tanstack/react-query";
 import { authenticatedRouteTree } from "./_authenticated/route";
 import { authRoute } from "./auth/route";
+import { ThemeProvider } from "next-themes";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -15,7 +16,13 @@ interface MyRouterContext {
 export const rootRoute = createRootRouteWithContext<MyRouterContext>()({
 	component: () => (
 		<>
-			<Outlet />
+			<ThemeProvider
+				attribute="data-theme"
+				defaultTheme="cool"
+				enableSystem={false}
+			>
+				<Outlet />
+			</ThemeProvider>
 			<TanStackDevtools
 				config={{
 					position: "bottom-right",

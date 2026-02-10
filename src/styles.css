@@ -62,9 +62,13 @@ code {
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --color-gradient-blue: var(--gradient-blue);
-  --color-gradient-purple: var(--gradient-purple);
+  --color-gradient-1: var(--gradient-1);
+  --color-gradient-2: var(--gradient-2);
   --color-table-separator: var(--table-separator);
+  --color-pabel-card-icon-bg: var(--pabel-card-icon-bg);
+  --color-pagination-active-bg: var(--pagination-active-bg);
+  --color-pagination-active-text: var(--pagination-active-text);
+  --color-pagination-input-bg: var(--pagination-input-bg);
 }
 
 :root {
@@ -101,44 +105,22 @@ code {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --gradient-blue: #96C0FF;
-  --gradient-purple: #8686FF;
+  --gradient-1: #96C0FF;
+  --gradient-2: #8686FF;
   --table-separator: #EAEAEA;
+  --pabel-card-icon-bg: #FAFCFF;
+  --pagination-active-bg: #EDEEFF;
+  --pagination-active-text: var(--gradient-2);
+  --pagination-input-bg: #FAFAFB;
 }
 
-/* .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-} */
+[data-theme="warm"] {
+  --gradient-1: #FF7560;
+  --gradient-2: #F02D2D;
+  --pabel-card-icon-bg: #FFF8F8;
+  --pagination-active-bg: rgba(255, 82, 71, 0.1);
+  --pagination-active-text: #FF5247;
+}
 
 @layer base {
   * {
