@@ -10,9 +10,9 @@ import { codeInspectorPlugin } from "code-inspector-plugin";
 export default defineConfig({
 	plugins: [
 		codeInspectorPlugin({
-      bundler: "vite",
-      hotKeys: ["ctrlKey", "altKey"],
-    }),
+			bundler: "vite",
+			hotKeys: ["ctrlKey", "altKey"],
+		}),
 		devtools(),
 		tanstackRouter({
 			target: "react",
@@ -26,25 +26,25 @@ export default defineConfig({
 		}),
 		tailwindcss(),
 	],
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          "react-router": ["@tanstack/react-router"],
-          "react-query": ["@tanstack/react-query"],
-          "react-table": ["@tanstack/react-table"],
-          "utils": [
-            "axios",
-            "clsx",
-            "tailwind-merge",
-            "class-variance-authority",
-            "zod",
-          ],
-          "charts": ["recharts"],
-        }
-      }
-    }
-  },
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					"react-router": ["@tanstack/react-router"],
+					"react-query": ["@tanstack/react-query"],
+					"react-table": ["@tanstack/react-table"],
+					utils: [
+						"axios",
+						"clsx",
+						"tailwind-merge",
+						"class-variance-authority",
+						"zod",
+					],
+					charts: ["recharts"],
+				},
+			},
+		},
+	},
 	resolve: {
 		alias: {
 			"@": fileURLToPath(new URL("./src", import.meta.url)),

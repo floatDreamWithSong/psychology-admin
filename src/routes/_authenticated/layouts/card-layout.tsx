@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 export const CardHeaderTitle = ({
 	variant = "primary",
 	children,
-  className,
+	className,
 	...props
 }: {
 	variant?: "primary" | "secondary" | "light";
@@ -15,7 +15,7 @@ export const CardHeaderTitle = ({
 				variant === "primary" && "text-2xl font-medium",
 				variant === "secondary" && "text-base font-normal ",
 				variant === "light" && "text-lg font-normal text-[#4F4F4F]",
-        className
+				className,
 			)}
 		>
 			{children}
@@ -31,10 +31,7 @@ export const CardLayout = ({
 	header?: React.ReactNode;
 } & React.ComponentProps<"div">) => {
 	return (
-		<div
-			{...props}
-			className={cn(["bg-card w-full h-fit", className])}
-		>
+		<div {...props} className={cn(["bg-card w-full h-fit", className])}>
 			{children}
 		</div>
 	);

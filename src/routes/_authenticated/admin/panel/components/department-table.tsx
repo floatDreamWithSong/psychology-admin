@@ -79,7 +79,7 @@ const DepartmentTable = () => {
 			lastUpdateTime: "2025.6.28",
 		},
 	];
-	const queryFn: NormalTableQueryFn<PanelData> = async ({pageSize}) => {
+	const queryFn: NormalTableQueryFn<PanelData> = async ({ pageSize }) => {
 		return {
 			data: mockAllData.slice(0, pageSize),
 			total: mockAllData.length * 10,

@@ -41,31 +41,54 @@ const activityConfig = {
 } satisfies ChartConfig;
 
 function WeeklyActivityChart() {
-  const id = useId();
+	const id = useId();
 	return (
 		<CardLayout className="px-6 py-5 squre-border flex-1">
 			<p className="text-base font-medium mb-4">近一周用户活跃趋势</p>
 			<ChartContainer config={activityConfig} className="h-[200px] w-full">
-				<AreaChart data={weeklyActivityData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
+				<AreaChart
+					data={weeklyActivityData}
+					margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+				>
 					<defs>
 						<linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
 							<stop offset="0%" stopColor="#8686FF" stopOpacity={0.3} />
 							<stop offset="100%" stopColor="#8686FF" stopOpacity={0.02} />
 						</linearGradient>
 					</defs>
-					<CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#F0F0F0" />
+					<CartesianGrid
+						vertical={false}
+						strokeDasharray="3 3"
+						stroke="#F0F0F0"
+					/>
 					<XAxis
 						dataKey="day"
 						axisLine={false}
 						tickLine={false}
 						tick={({ x, y, payload }) => {
-							const item = weeklyActivityData.find((d) => d.day === payload.value);
+							const item = weeklyActivityData.find(
+								(d) => d.day === payload.value,
+							);
 							return (
 								<g transform={`translate(${x},${y})`}>
-									<text x={0} y={0} dy={12} textAnchor="middle" fill="#999" fontSize={12}>
+									<text
+										x={0}
+										y={0}
+										dy={12}
+										textAnchor="middle"
+										fill="#999"
+										fontSize={12}
+									>
 										{payload.value}
 									</text>
-									<text x={0} y={0} dy={26} textAnchor="middle" fill="#999" fontSize={11}>
+									<text
+										x={0}
+										y={0}
+										dy={26}
+										textAnchor="middle"
+										fill="#999"
+										fontSize={11}
+									>
 										{item?.date}
 									</text>
 								</g>
@@ -73,7 +96,11 @@ function WeeklyActivityChart() {
 						}}
 						height={40}
 					/>
-					<YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#999" }} />
+					<YAxis
+						axisLine={false}
+						tickLine={false}
+						tick={{ fontSize: 12, fill: "#999" }}
+					/>
 					<ChartTooltip content={<ChartTooltipContent />} />
 					<Area
 						type="monotone"
@@ -101,7 +128,7 @@ const emotionData = [
 const emotionConfig = emotionData.reduce((acc: ChartConfig, item) => {
 	acc[item.name] = { label: item.name, color: item.fill };
 	return acc;
-}, {})
+}, {});
 
 function EmotionPieChart() {
 	return (
@@ -143,10 +170,13 @@ function EmotionPieChart() {
 							outerRadius={70}
 							strokeWidth={2}
 							stroke="#fff"
-              isAnimationActive
-              animationDuration={600}
-              animationEasing="ease-out"
-							activeShape={({ outerRadius = 0, ...props }: PieSectorDataItem) => (
+							isAnimationActive
+							animationDuration={600}
+							animationEasing="ease-out"
+							activeShape={({
+								outerRadius = 0,
+								...props
+							}: PieSectorDataItem) => (
 								<Sector {...props} outerRadius={outerRadius + 8} />
 							)}
 						>
@@ -193,18 +223,39 @@ function RiskLevelChart() {
 				</div>
 			</div>
 			<ChartContainer config={riskLevelConfig} className="h-[180px] w-full">
-				<BarChart data={riskLevelData} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
-					<CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#F0F0F0" />
+				<BarChart
+					data={riskLevelData}
+					margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
+				>
+					<CartesianGrid
+						vertical={false}
+						strokeDasharray="3 3"
+						stroke="#F0F0F0"
+					/>
 					<XAxis
 						dataKey="level"
 						axisLine={false}
 						tickLine={false}
 						tick={{ fontSize: 12, fill: "#000" }}
 					/>
-					<YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#999" }} />
+					<YAxis
+						axisLine={false}
+						tickLine={false}
+						tick={{ fontSize: 12, fill: "#999" }}
+					/>
 					<ChartTooltip content={<ChartTooltipContent />} />
-					<Bar dataKey="female" fill="#8686FF" radius={[3, 3, 0, 0]} barSize={16} />
-					<Bar dataKey="male" fill="#96C0FF" radius={[3, 3, 0, 0]} barSize={16} />
+					<Bar
+						dataKey="female"
+						fill="#8686FF"
+						radius={[3, 3, 0, 0]}
+						barSize={16}
+					/>
+					<Bar
+						dataKey="male"
+						fill="#96C0FF"
+						radius={[3, 3, 0, 0]}
+						barSize={16}
+					/>
 				</BarChart>
 			</ChartContainer>
 		</CardLayout>
@@ -233,7 +284,14 @@ const wordCloudData = [
 
 function WordCloud() {
 	const words = useMemo(() => {
-		const colors = ["#8686FF", "#96C0FF", "#B8A9FF", "#A0A0D0", "#7B7BCC", "#6C6CBB"];
+		const colors = [
+			"#8686FF",
+			"#96C0FF",
+			"#B8A9FF",
+			"#A0A0D0",
+			"#7B7BCC",
+			"#6C6CBB",
+		];
 		return wordCloudData.map((w, i) => ({
 			...w,
 			fontSize: 12 + w.weight * 2.5,

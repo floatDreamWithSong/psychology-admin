@@ -7,14 +7,14 @@ import { adminRecordRoute } from "./record/route";
 import { adminWarningRoute } from "./warning/route";
 
 export const adminRoute = createRoute({
-  getParentRoute: () => authenticatedRoute,
-  id: "admin",
+	getParentRoute: () => authenticatedRoute,
+	id: "admin",
 });
 
 export const adminRouteTree = adminRoute.addChildren([
-  adminPanelRoute,
-  adminSettingRoute,
-  adminUserRoute,
-  adminRecordRoute,
-  adminWarningRoute,
+	adminPanelRoute,
+	adminSettingRoute,
+	adminUserRoute,
+	adminRecordRoute,
+	adminWarningRoute,
 ]);
