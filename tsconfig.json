@@ -23,7 +23,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@admin/*": ["./src/routes/_authenticated/admin/*"]
+      "@admin/*": ["./src/routes/_authenticated/admin/*"],
+      "@institution/*": ["./src/routes/_authenticated/institution/*"],
+      "@layouts/*": ["./src/routes/_authenticated/layouts/*"],
+      "@components/*": ["./src/components/*"],
     }
   }
 }

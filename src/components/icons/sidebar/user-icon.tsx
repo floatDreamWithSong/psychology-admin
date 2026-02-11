@@ -11,8 +11,8 @@ const UserIcon = ({ ...props }: React.ComponentProps<"svg">) => {
 			<path
 				d="M18.5 10.8438C19.8201 11.8794 21 14.487 21 16.0937C21 16.5942 20.6522 17 20.2232 17H19.75M14.75 6.59865C15.604 6.07994 16.1786 5.11042 16.1786 4C16.1786 2.88958 15.604 1.92006 14.75 1.40135M1.77684 17H15.4613C15.8903 17 16.2381 16.5942 16.2381 16.0937C16.2381 12.9474 13.7347 10.3968 8.61905 10.3968C3.5034 10.3968 1 12.9474 1 16.0937C1 16.5942 1.3478 17 1.77684 17ZM11.4762 4C11.4762 5.65685 10.197 7 8.61905 7C7.04109 7 5.7619 5.65685 5.7619 4C5.7619 2.34315 7.04109 1 8.61905 1C10.197 1 11.4762 2.34315 11.4762 4Z"
 				stroke="url(#paint0_linear_4568_9890)"
-				stroke-width="2"
-				stroke-linecap="round"
+				strokeWidth="2"
+				strokeLinecap="round"
 			/>
 			<defs>
 				<linearGradient
@@ -23,8 +23,8 @@ const UserIcon = ({ ...props }: React.ComponentProps<"svg">) => {
 					y2="0.999998"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="var(--gradient-2)" />
-					<stop offset="1" stop-color="var(--gradient-1)" />
+					<stop stopColor="var(--gradient-2)" />
+					<stop offset="1" stopColor="var(--gradient-1)" />
 				</linearGradient>
 			</defs>
 		</svg>

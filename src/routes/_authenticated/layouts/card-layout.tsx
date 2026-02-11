@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Slot } from "@radix-ui/react-slot";
 
 export const CardHeaderTitle = ({
 	variant = "primary",
@@ -26,13 +27,28 @@ export const CardHeaderTitle = ({
 export const CardLayout = ({
 	className,
 	children,
+	variant,
+	asChild,
 	...props
 }: {
 	header?: React.ReactNode;
-} & React.ComponentProps<"div">) => {
+} & React.ComponentProps<"div"> & {
+		variant?: "layout" | "area" | "card";
+		asChild?: boolean;
+	}) => {
+	const Comp = asChild ? Slot : "div";
 	return (
-		<div {...props} className={cn(["bg-card w-full h-fit", className])}>
+		<Comp
+			{...props}
+			className={cn([
+				"bg-card w-full h-fit",
+				variant === "layout" && "pl-10 pr-6 py-9",
+				variant === "area" && "px-7.5 py-3.75 round-shadow",
+				variant === "card" && "px-7 py-5 squre-border flex min-w-78 w-fit",
+				className,
+			])}
+		>
 			{children}
-		</div>
+		</Comp>
 	);
 };

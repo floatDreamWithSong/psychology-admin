@@ -112,6 +112,15 @@ code {
   --pagination-active-bg: #EDEEFF;
   --pagination-active-text: var(--gradient-2);
   --pagination-input-bg: #FAFAFB;
+
+  --pie-1: #8686FF;
+  --pie-2: #9E9EFF;
+  --pie-3: #B6B6FF;
+  --pie-4: #C3C3FF;
+
+  --bar-1: #8686FF;
+  --bar-2: rgba(142, 163, 255, 0.9);
+  --bar-3:  rgba(150, 192, 255, 0.8);
 }
 
 [data-theme="warm"] {

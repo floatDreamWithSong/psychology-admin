@@ -21,8 +21,8 @@ const WarningIcon = ({ ...props }: React.ComponentProps<"svg">) => {
 					y2="34.0007"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="var(--gradient-1)" />
-					<stop offset="1" stop-color="var(--gradient-2)" />
+					<stop stopColor="var(--gradient-1)" />
+					<stop offset="1" stopColor="var(--gradient-2)" />
 				</linearGradient>
 			</defs>
 		</svg>

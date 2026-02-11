@@ -4,7 +4,7 @@ import {
 	type NormalTableQueryFn,
 } from "@/components/common/normal-table";
 
-const DepartmentTable = () => {
+const DepartmentTable = ({ className, ...props }: React.ComponentProps<"div">) => {
 	const mockAllData: PanelData[] = [
 		{
 			departmentType: "学校",
@@ -93,7 +93,10 @@ const DepartmentTable = () => {
 			queryKey={["panelData"]}
 			initPaginationState={{ pageIndex: 0, pageSize: 4 }}
 			pageSizeOptions={[4, 8, 12]}
-			className="mt-6.25"
+			className={className}
+			paginationPosition="inside"
+			shadowStyle="default"
+			{...props}
 		/>
 	);
 };

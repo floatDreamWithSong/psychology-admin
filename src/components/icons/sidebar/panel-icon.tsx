@@ -15,9 +15,9 @@ const PanelIcon = ({ ...props }: React.ComponentProps<"svg">) => {
 			<path
 				d="M7.12988 18.9304V15.9802M13.0303 18.9304V13.03M18.9307 18.9304V7.12964M4.17969 24.8308C2.55034 24.8308 1.22949 23.51 1.22949 21.8806V4.17944C1.22949 2.5501 2.55034 1.22925 4.17969 1.22925H21.8809C23.5102 1.22925 24.8311 2.5501 24.8311 4.17944V21.8806C24.8311 23.51 23.5102 24.8308 21.8809 24.8308H4.17969Z"
 				stroke="white"
-				stroke-width="2.4585"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+				strokeWidth="2.4585"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 			<defs>
 				<linearGradient
@@ -28,8 +28,8 @@ const PanelIcon = ({ ...props }: React.ComponentProps<"svg">) => {
 					y2="26.2292"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="var(--gradient-1)" />
-					<stop offset="1" stop-color="var(--gradient-2)" />
+					<stop stopColor="var(--gradient-1)" />
+					<stop offset="1" stopColor="var(--gradient-2)" />
 				</linearGradient>
 			</defs>
 		</svg>

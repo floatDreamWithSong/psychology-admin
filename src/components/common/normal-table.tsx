@@ -53,6 +53,8 @@ interface NormalTableProps<T> {
 	queryKey: string[] | string;
 	queryFn: NormalTableQueryFn<T>;
 	pageSizeOptions?: number[];
+	paginationPosition?: "inside" | "outside";
+	shadowStyle?: "none" | "default";
 }
 
 interface PaginationState {
@@ -66,6 +68,8 @@ export function NormalTable<T>({
 	queryFn,
 	queryKey,
 	initPaginationState,
+	paginationPosition = "inside",
+	shadowStyle = "default",
 	pageSizeOptions = initPaginationState
 		? [initPaginationState.pageSize]
 		: [10, 20],
@@ -121,9 +125,23 @@ export function NormalTable<T>({
 	return (
 		<CardLayout
 			{...props}
-			className={cn("px-7 py-5 round-shadow overflow-x-auto", className)}
+			className={cn(
+				paginationPosition === "inside" && [
+					"px-7 py-5 overflow-x-auto",
+					shadowStyle === "default" && "round-shadow",
+					className,
+				],
+			)}
 		>
-			<Table>
+			<Table
+				containerClassName={cn(
+					paginationPosition === "outside" && [
+						"px-7 py-5",
+						shadowStyle === "default" && "round-shadow",
+						className,
+					],
+				)}
+			>
 				<TableHeader>
 					{table.getHeaderGroups().map((headerGroup) => (
 						<TableRow

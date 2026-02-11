@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { PaletteIcon } from "lucide-react";
+import { institutionRouteTree } from "./institution/route";
 
 // 创建认证布局路由
 export const authenticatedRoute = createRoute({
@@ -30,7 +31,6 @@ export const authenticatedRoute = createRoute({
 	beforeLoad: () => {
 		const token = tokenStore.get();
 		const isAuthenticated = import.meta.env.DEV || Boolean(token);
-
 		if (!isAuthenticated) {
 			throw redirect({
 				to: "/auth",
@@ -105,6 +105,7 @@ export const authenticatedRoute = createRoute({
 	},
 });
 
-export const authenticatedRouteTree = authenticatedRoute.addChildren([
-	adminRouteTree,
-]);
+export const authenticatedRouteTree =
+  env.VITE_APP_TYPE === 'institution'
+    ? authenticatedRoute.addChildren([institutionRouteTree])
+    : authenticatedRoute.addChildren([adminRouteTree])

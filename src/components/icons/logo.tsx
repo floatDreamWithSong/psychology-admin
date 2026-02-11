@@ -11,10 +11,10 @@ const Logo = ({ className, ...props }: React.ComponentProps<"svg">) => {
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 		>
-			<g clip-path="url(#clip0_4568_9896)">
+			<g clipPath="url(#clip0_4568_9896)">
 				<path
-					fill-rule="evenodd"
-					clip-rule="evenodd"
+					fillRule="evenodd"
+					clipRule="evenodd"
 					d="M22.9286 22.2368H21.269C20.1871 22.2368 19.4851 23.435 20.0279 24.3916C20.4056 25.0579 21.0046 25.7133 21.9543 26.0826C21.7877 26.6453 21.5034 27.0524 21.0953 27.3169C20.0211 28.0133 18.2228 27.5816 17.6204 27.3571C17.2293 27.2096 16.7936 27.4107 16.6475 27.8059C16.5015 28.2011 16.7006 28.6427 17.0917 28.7904L17.0949 28.7916C17.1925 28.8273 18.2832 29.2258 19.5577 29.2258C20.335 29.2258 21.1799 29.0769 21.9066 28.6086C22.2907 28.3607 22.6121 28.047 22.87 27.6696C23.1276 28.0466 23.449 28.3599 23.8329 28.6076C24.5608 29.0773 25.4057 29.2262 26.183 29.2262C27.4734 29.2262 28.5767 28.8175 28.649 28.7906C29.0401 28.6431 29.238 28.2015 29.0921 27.8063C28.9459 27.41 28.5101 27.2098 28.1178 27.3575L28.1152 27.3585C28.0275 27.3893 25.9116 28.1346 24.6477 27.3185C24.2483 27.06 23.9665 26.665 23.7976 26.1214C24.8087 25.7605 25.4379 25.0823 25.8294 24.3916C26.3722 23.435 25.6701 22.2368 24.5882 22.2368H22.9286Z"
 					fill="url(#paint0_linear_4568_9896)"
 				/>
@@ -40,9 +40,9 @@ const Logo = ({ className, ...props }: React.ComponentProps<"svg">) => {
 					y2="39.508"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#8686FF" />
-					<stop offset="0.322222" stop-color="var(--gradient-1)" />
-					<stop offset="0.782222" stop-color="var(--gradient-2)" />
+					<stop stopColor="#8686FF" />
+					<stop offset="0.322222" stopColor="var(--gradient-1)" />
+					<stop offset="0.782222" stopColor="var(--gradient-2)" />
 				</linearGradient>
 				<linearGradient
 					id="paint1_linear_4568_9896"
@@ -52,9 +52,9 @@ const Logo = ({ className, ...props }: React.ComponentProps<"svg">) => {
 					y2="27.1187"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#8686FF" />
-					<stop offset="0.322222" stop-color="var(--gradient-1)" />
-					<stop offset="0.782222" stop-color="var(--gradient-2)" />
+					<stop stopColor="#8686FF" />
+					<stop offset="0.322222" stopColor="var(--gradient-1)" />
+					<stop offset="0.782222" stopColor="var(--gradient-2)" />
 				</linearGradient>
 				<linearGradient
 					id="paint2_linear_4568_9896"
@@ -64,9 +64,9 @@ const Logo = ({ className, ...props }: React.ComponentProps<"svg">) => {
 					y2="28.3627"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#8686FF" />
-					<stop offset="0.322222" stop-color="var(--gradient-1)" />
-					<stop offset="0.782222" stop-color="var(--gradient-2)" />
+					<stop stopColor="#8686FF" />
+					<stop offset="0.322222" stopColor="var(--gradient-1)" />
+					<stop offset="0.782222" stopColor="var(--gradient-2)" />
 				</linearGradient>
 				<linearGradient
 					id="paint3_linear_4568_9896"
@@ -76,9 +76,9 @@ const Logo = ({ className, ...props }: React.ComponentProps<"svg">) => {
 					y2="104.706"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="#8686FF" />
-					<stop offset="0.322222" stop-color="var(--gradient-1)" />
-					<stop offset="0.782222" stop-color="var(--gradient-2)" />
+					<stop stopColor="#8686FF" />
+					<stop offset="0.322222" stopColor="var(--gradient-1)" />
+					<stop offset="0.782222" stopColor="var(--gradient-2)" />
 				</linearGradient>
 				<clipPath id="clip0_4568_9896">
 					<rect width="46" height="46" fill="white" />

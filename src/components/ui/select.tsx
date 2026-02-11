@@ -5,9 +5,24 @@ import { Select as SelectPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 function Select({
+	children,
+	labelDir = "horizontal",
 	...props
-}: React.ComponentProps<typeof SelectPrimitive.Root>) {
-	return <SelectPrimitive.Root data-slot="select" {...props} />;
+}: React.ComponentProps<typeof SelectPrimitive.Root> & {
+	labelDir?: "horizontal" | "vertical";
+}) {
+	return (
+		<SelectPrimitive.Root data-slot="select" {...props}>
+			<div
+				className={cn(
+					"flex gap-3 min-w-fit",
+					labelDir === "horizontal" ? "flex-row" : "flex-col",
+				)}
+			>
+				{children}
+			</div>
+		</SelectPrimitive.Root>
+	);
 }
 
 function SelectGroup({

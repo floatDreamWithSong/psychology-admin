@@ -21,8 +21,8 @@ const ClockIcon = ({ ...props }: React.ComponentProps<"svg">) => {
 					y2="35.4993"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="var(--gradient-1)" />
-					<stop offset="1" stop-color="var(--gradient-2)" />
+					<stop stopColor="var(--gradient-1)" />
+					<stop offset="1" stopColor="var(--gradient-2)" />
 				</linearGradient>
 			</defs>
 		</svg>

@@ -1,66 +1,34 @@
 import {
 	CardHeaderTitle,
 	CardLayout,
-} from "@/routes/_authenticated/layouts/card-layout";
-import UserIcon from "@/components/icons/panel/user-icon";
-import { ClockIcon, HomeIcon, MessageIcon } from "@/components/icons";
-import WarningIcon from "@/components/icons/panel/warning-icon";
+} from "@layouts/card-layout";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ThemeProps } from "@/lib/theme";
 
-interface IndexCardProps {
+export interface IndexCardProps {
 	title: string;
 	value: string;
 	percentage: number;
 	props?: ThemeProps;
 	icon: React.ReactNode;
 }
-const IndexOverview = () => {
-	const indexCards: IndexCardProps[] = [
-		{
-			title: "总注册单位",
-			value: "1000家",
-			percentage: 10,
-			icon: <HomeIcon />,
-		},
-		{
-			title: "总用户数",
-			value: "1000人",
-			percentage: 10,
-			icon: <UserIcon />,
-		},
-		{
-			title: "总对话数",
-			value: "21w次",
-			percentage: 10,
-			icon: <MessageIcon />,
-		},
-		{
-			title: "平均单次对话时长",
-			value: "55min",
-			percentage: -10,
-			icon: <ClockIcon />,
-		},
-		{
-			title: "当前高风险用户数",
-			value: "1000人",
-			percentage: 10,
-			props: {
-				"data-theme": "warm",
-			},
-			icon: <WarningIcon />,
-		},
-	];
+
+interface IndexOverviewProps {
+	datas: IndexCardProps[];
+	title: string;
+}
+
+export const IndexOverview = ({ datas, title, ...props }: IndexOverviewProps & React.ComponentProps<typeof CardLayout>) => {
 	return (
-		<CardLayout className="px-7.5 py-3.75 round-shadow">
+		<CardLayout variant="area" {...props}>
 			<CardHeaderTitle variant="light" className="pb-2.5">
-				指标总览
+				{title}
 			</CardHeaderTitle>
 			<div className="flex gap-5 flex-wrap">
-				{indexCards.map(({ icon, percentage, title, value, props }) => (
+				{datas.map(({ icon, percentage, title, value, props }) => (
 					<CardLayout
-						className={cn("px-7 py-5 squre-border flex min-w-78 w-fit")}
+						variant="card"
 						key={title}
 						{...props}
 					>
@@ -101,4 +69,3 @@ const IndexOverview = () => {
 		</CardLayout>
 	);
 };
-export default IndexOverview;

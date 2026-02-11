@@ -51,6 +51,15 @@ export default defineConfig({
 			"@admin": fileURLToPath(
 				new URL("./src/routes/_authenticated/admin", import.meta.url),
 			),
+			"@institution": fileURLToPath(
+				new URL("./src/routes/_authenticated/institution", import.meta.url),
+			),
+			"@layouts": fileURLToPath(
+				new URL("./src/routes/_authenticated/layouts", import.meta.url),
+			),
+			"@components": fileURLToPath(
+				new URL("./src/components", import.meta.url),
+			),
 		},
 	},
 });
