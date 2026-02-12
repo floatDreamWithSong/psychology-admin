@@ -105,8 +105,16 @@ code {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  --gradient-1: #96C0FF;
-  --gradient-2: #8686FF;
+
+  --cool-1:#96C0FF;
+  --cool-2:#8686FF;
+  --warm-1:#FF7560;
+  --warm-2:#F02D2D;
+
+  --gradient-1: var(--cool-1);
+  --gradient-2: var(--cool-2);
+
+
   --table-separator: #EAEAEA;
   --pabel-card-icon-bg: #FAFCFF;
   --pagination-active-bg: #EDEEFF;
@@ -124,8 +132,8 @@ code {
 }
 
 [data-theme="warm"] {
-  --gradient-1: #FF7560;
-  --gradient-2: #F02D2D;
+  --gradient-1: var(--warm-1);
+  --gradient-2: var(--warm-2);
   --pabel-card-icon-bg: #FFF8F8;
   --pagination-active-bg: rgba(255, 82, 71, 0.1);
   --pagination-active-text: #FF5247;
@@ -161,4 +169,15 @@ code {
 @utility overflow-gradient {
   mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
   @apply relative;
+}
+
+@utility bg-gradient-1-2 {
+  background: linear-gradient(to right, var(--gradient-1) 0%, var(--gradient-2) 100%);
+}
+
+@utility text-gradient-1-2 {
+  background-image: linear-gradient(to bottom, var(--gradient-1) 0%, var(--gradient-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

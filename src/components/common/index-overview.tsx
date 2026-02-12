@@ -1,7 +1,4 @@
-import {
-	CardHeaderTitle,
-	CardLayout,
-} from "@layouts/card-layout";
+import { CardHeaderTitle, CardLayout } from "@layouts/card-layout";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ThemeProps } from "@/lib/theme";
@@ -16,22 +13,24 @@ export interface IndexCardProps {
 
 interface IndexOverviewProps {
 	datas: IndexCardProps[];
-	title: string;
+	title?: string;
 }
 
-export const IndexOverview = ({ datas, title, ...props }: IndexOverviewProps & React.ComponentProps<typeof CardLayout>) => {
+export const IndexOverview = ({
+	datas,
+	title,
+	...props
+}: IndexOverviewProps & React.ComponentProps<typeof CardLayout>) => {
 	return (
 		<CardLayout variant="area" {...props}>
-			<CardHeaderTitle variant="light" className="pb-2.5">
-				{title}
-			</CardHeaderTitle>
+			{title && (
+				<CardHeaderTitle variant="light" className="pb-2.5">
+					{title}
+				</CardHeaderTitle>
+			)}
 			<div className="flex gap-5 flex-wrap">
 				{datas.map(({ icon, percentage, title, value, props }) => (
-					<CardLayout
-						variant="card"
-						key={title}
-						{...props}
-					>
+					<CardLayout variant="card" key={title} {...props}>
 						<div className="flex-1">
 							<CardHeaderTitle variant="secondary">{title}</CardHeaderTitle>
 							<div>

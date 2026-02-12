@@ -42,7 +42,7 @@ export const CardLayout = ({
 			{...props}
 			className={cn([
 				"bg-card w-full h-fit",
-				variant === "layout" && "pl-10 pr-6 py-9",
+				variant === "layout" && "pl-10 pr-6 py-9 mb-10",
 				variant === "area" && "px-7.5 py-3.75 round-shadow",
 				variant === "card" && "px-7 py-5 squre-border flex min-w-78 w-fit",
 				className,

@@ -25,17 +25,26 @@ import { scaleLinear } from "d3-scale";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
+type ChartProps = React.ComponentProps<typeof CardLayout> & {
+	containerClassName?: string;
+};
+
 // ==================== 近一周用户活跃趋势 ====================
 
-type ActivityChartProps =
+type ActivityChartProps = {
+	config: ChartConfig;
+	title?: string;
+	borderStyle?: "squre-border" | "none";
+	drawYAxis?: boolean;
+	xAxisPosition?: "top" | "bottom";
+	drawCartesianGrid?: "horizontal" | "vertical" | "both" | "none";
+} & (
 	| {
 			datas: {
 				day: string;
 				date: number | string;
 				value: number;
 			}[];
-			config: ChartConfig;
-			title: string;
 			type: "line";
 	  }
 	| {
@@ -43,18 +52,39 @@ type ActivityChartProps =
 				date: number;
 				value: number;
 			}[];
-			config: ChartConfig;
-			title: string;
 			type: "column";
-	  };
+	  }
+);
 
-function ActivityChart(props: ActivityChartProps & React.ComponentProps<typeof CardLayout>) {
-	const { datas, config, title, type, className, ...rest } = props;
+function ActivityChart(props: ActivityChartProps & ChartProps) {
+	const {
+		datas,
+		config,
+		title,
+		type,
+		className,
+		containerClassName,
+		borderStyle = "squre-border",
+		drawYAxis = false,
+		xAxisPosition = "top",
+		drawCartesianGrid = "vertical",
+		...rest
+	} = props;
 	const id = useId();
 	return (
-		<CardLayout className={cn("px-6 py-5 squre-border flex-1", className)} {...rest}>
-			<p className="text-base font-medium mb-4">{title}</p>
-			<ChartContainer config={config} className="h-50 w-full">
+		<CardLayout
+			className={cn(
+				"px-6 py-5  flex-1",
+				borderStyle === "squre-border" && "squre-border",
+				className,
+			)}
+			{...rest}
+		>
+			{title && <p className="text-base font-medium mb-4">{title}</p>}
+			<ChartContainer
+				config={config}
+				className={cn("h-50 w-full", containerClassName)}
+			>
 				{type === "line" ? (
 					<AreaChart
 						data={datas}
@@ -74,19 +104,31 @@ function ActivityChart(props: ActivityChartProps & React.ComponentProps<typeof C
 								/>
 							</linearGradient>
 						</defs>
-						<CartesianGrid
-							vertical={false}
-							strokeDasharray="3 3"
-							stroke="#F0F0F0"
-						/>
+						{drawCartesianGrid && (
+							<CartesianGrid
+								vertical={
+									drawCartesianGrid === "vertical" ||
+									drawCartesianGrid === "both"
+								}
+								horizontal={
+									drawCartesianGrid === "horizontal" ||
+									drawCartesianGrid === "both"
+								}
+								strokeDasharray="3 3"
+								stroke="#F0F0F0"
+							/>
+						)}
 						<XAxis
 							dataKey="day"
+							orientation={xAxisPosition}
 							axisLine={false}
 							tickLine={false}
 							tick={({ x, y, payload }) => {
 								const item = datas.find((d) => d.day === payload.value);
 								return (
-									<g transform={`translate(${x},${y})`}>
+									<g
+										transform={`translate(${x},${xAxisPosition === "top" ? 0 : y})`}
+									>
 										<text
 											x={0}
 											y={0}
@@ -102,7 +144,7 @@ function ActivityChart(props: ActivityChartProps & React.ComponentProps<typeof C
 											y={0}
 											dy={26}
 											textAnchor="middle"
-											fill="#999"
+											fill="#000"
 											fontSize={11}
 										>
 											{item?.date}
@@ -112,11 +154,13 @@ function ActivityChart(props: ActivityChartProps & React.ComponentProps<typeof C
 							}}
 							height={40}
 						/>
-						<YAxis
-							axisLine={false}
-							tickLine={false}
-							tick={{ fontSize: 12, fill: "#999" }}
-						/>
+						{drawYAxis && (
+							<YAxis
+								axisLine={false}
+								tickLine={false}
+								tick={{ fontSize: 12, fill: "#999" }}
+							/>
+						)}
 						<ChartTooltip content={<ChartTooltipContent />} />
 						<Area
 							type="monotone"
@@ -146,6 +190,7 @@ function ActivityChart(props: ActivityChartProps & React.ComponentProps<typeof C
 						/>
 						<XAxis
 							dataKey="date"
+							orientation={xAxisPosition}
 							axisLine={false}
 							tickLine={false}
 							tick={{ fontSize: 12, fill: "#999" }}
@@ -179,13 +224,17 @@ interface EmotionPieChartProps {
 		fill: string;
 	}[];
 	config: ChartConfig;
-	title: string;
+	title?: string;
 }
-function CommonPieChart(props: EmotionPieChartProps & React.ComponentProps<typeof CardLayout>) {
-	const { datas, config, title, className, ...rest } = props;
+function CommonPieChart(props: EmotionPieChartProps & ChartProps) {
+	const { datas, config, title, className, containerClassName, ...rest } =
+		props;
 	return (
-		<CardLayout className={cn("px-6 py-5 squre-border flex-1 min-w-85", className)} {...rest}>
-			<p className="text-base font-medium mb-2">{title}</p>
+		<CardLayout
+			className={cn("px-6 py-5 squre-border flex-1 min-w-85", className)}
+			{...rest}
+		>
+			{title && <p className="text-base font-medium mb-2">{title}</p>}
 			<div className="flex items-center gap-4">
 				<div className="flex flex-col gap-2 min-w-fit">
 					{datas.map((item) => (
@@ -198,7 +247,10 @@ function CommonPieChart(props: EmotionPieChartProps & React.ComponentProps<typeo
 						</div>
 					))}
 				</div>
-				<ChartContainer config={config} className="h-45 flex-1">
+				<ChartContainer
+					config={config}
+					className={cn("h-45 flex-1", containerClassName)}
+				>
 					<PieChart>
 						<ChartTooltip
 							content={
@@ -246,7 +298,7 @@ function CommonPieChart(props: EmotionPieChartProps & React.ComponentProps<typeo
 // ==================== 风险等级统计 ====================
 
 interface RiskLevelChartProps {
-	title: string;
+	title?: string;
 	config: ChartConfig;
 	datas: {
 		level: string;
@@ -255,12 +307,16 @@ interface RiskLevelChartProps {
 	}[];
 }
 
-function RiskLevelChart(props: RiskLevelChartProps & React.ComponentProps<typeof CardLayout>) {
-	const { datas, config, title, className, ...rest } = props;
+function RiskLevelChart(props: RiskLevelChartProps & ChartProps) {
+	const { datas, config, title, className, containerClassName, ...rest } =
+		props;
 	return (
-		<CardLayout className={cn("px-6 py-5 squre-border flex-1 min-w-60", className)} {...rest}>
+		<CardLayout
+			className={cn("px-6 py-5 squre-border flex-1 min-w-60", className)}
+			{...rest}
+		>
 			<div className="flex items-center justify-between mb-2">
-				<p className="text-base font-medium">{title}</p>
+				{title && <p className="text-base font-medium">{title}</p>}
 				<div className="flex items-center gap-3">
 					{Object.entries(config).map(([key, cfg]) => (
 						<div key={key} className="flex items-center gap-1.5 text-xs">
@@ -273,7 +329,10 @@ function RiskLevelChart(props: RiskLevelChartProps & React.ComponentProps<typeof
 					))}
 				</div>
 			</div>
-			<ChartContainer config={config} className="h-[180px] w-full">
+			<ChartContainer
+				config={config}
+				className={cn("h-[180px] w-full", containerClassName)}
+			>
 				<BarChart
 					data={datas}
 					margin={{ top: 5, right: 10, left: -20, bottom: 0 }}
@@ -316,17 +375,27 @@ function RiskLevelChart(props: RiskLevelChartProps & React.ComponentProps<typeof
 // ==================== 风险关键词云 ====================
 
 interface WordCloudProps {
-	title: string;
+	title?: string;
 	datas: {
 		text: string;
 		weight: number;
 	}[];
+	borderStyle?: "squre-border" | "none";
+	fontRange?: [number, number];
 }
 
 type LayoutWord = cloud.Word & { text: string; weight: number; color: string };
 
-function WordCloud(props: WordCloudProps & React.ComponentProps<typeof CardLayout>) {
-	const { datas, title, className, ...rest } = props;
+function WordCloud(props: WordCloudProps & ChartProps) {
+	const {
+		datas,
+		title,
+		className,
+		borderStyle = "squre-border",
+		containerClassName,
+		fontRange = [18, 50],
+		...rest
+	} = props;
 	const { theme } = useTheme();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [layoutWords, setLayoutWords] = useState<LayoutWord[]>([]);
@@ -336,7 +405,7 @@ function WordCloud(props: WordCloudProps & React.ComponentProps<typeof CardLayou
 	const minW = Math.min(...weights);
 	const maxW = Math.max(...weights);
 
-	const fontScale = scaleLinear().domain([minW, maxW]).range([18, 50]);
+	const fontScale = scaleLinear().domain([minW, maxW]).range(fontRange);
 	const colorScale = (value: number): string => {
 		const getCSSVariable = (varName: string) =>
 			getComputedStyle(document.documentElement).getPropertyValue(varName);
@@ -398,9 +467,16 @@ function WordCloud(props: WordCloudProps & React.ComponentProps<typeof CardLayou
 	}, [theme]);
 
 	return (
-		<CardLayout className={cn("px-6 py-5 squre-border flex-1 min-w-60", className)} {...rest}>
-			<p className="text-base font-medium mb-2">{title}</p>
-			<div ref={containerRef} className="h-45 w-full">
+		<CardLayout
+			className={cn(
+				"px-6 py-5 flex-1 min-w-60",
+				borderStyle === "squre-border" && "squre-border",
+				className,
+			)}
+			{...rest}
+		>
+			{title && <p className="text-base font-medium mb-2">{title}</p>}
+			<div ref={containerRef} className={cn("h-45 w-full", containerClassName)}>
 				{size[0] > 0 && (
 					<svg width={size[0]} height={size[1]}>
 						<g transform={`translate(${size[0] / 2},${size[1] / 2})`}>
